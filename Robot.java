@@ -123,6 +123,7 @@ public class Robot extends TimedRobot {
   boolean Ball4;
   boolean intakeOn = true;
   String colorString;
+  String[] colorOrder = {"Y","R","G","B"};
   String gameData;
   String nextColor = "Purple Baby";
   String gameSadFace = "Mehh";
@@ -410,6 +411,7 @@ public class Robot extends TimedRobot {
     }
   }
   SmartDashboard.putNumber("seenColor",seenColor);
+  
   //Color Wheel Moter Must Turn Clockwise
   if (gamePad0.getRawButtonPressed(3)){rotatenum += 8;} //rotatenum is number of rotations asked for x2; e.g. setting for 8 makes 4 full rotations, setting for 7 gives 3.5 wheel rotations.
   if (rotatenum > 0){
@@ -456,6 +458,15 @@ public class Robot extends TimedRobot {
     if (nextColor == "G" && colorString == "B"){
       nextColor = "B";
     }
+    /* List element manipulation attempt
+    currentColor //Initialize both at after button press
+    nextColor = colorOrder[(currentColor+1)%colorOrder.length];
+    
+    if (colorString == nextColor) {
+      rotateNum -= 1
+      nextColor = colorOrder[(currentColor+1)%colorOrder.length];
+    }
+    */
   } else {
     nextColor = colorString;
     colMotor.stopMotor();
